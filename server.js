@@ -21,8 +21,12 @@ app.get("/", function (request, response) {
 app.post("/get-file-size", upload.single('filetoupload'), function(req, res) {
   if(req.file) {
     var size = req.file.size;
+    var fname = req.file.originalname;
+    var ftype = req.file.mimetype;
     res.json({
-      size: size
+      size: size,
+      filename: fname,
+      type: ftype
     });  
   } else {
     res.json({
